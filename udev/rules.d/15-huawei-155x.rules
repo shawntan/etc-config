@@ -1,0 +1,4 @@
+SUBSYSTEM="usb",
+ATTRS{idProduct}=="1446",
+ATTRS{idVendor}=="12d1",
+RUN+="/lib/udev/modem-modeswitch --vendor 0x$attr{idVendor} --product 0x$attr{idProduct} --type option-zerocd"

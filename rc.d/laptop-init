@@ -1,0 +1,47 @@
+#!/bin/bash
+#universal daemon controller
+# general config
+. /etc/rc.conf
+. /etc/rc.d/functions
+
+cpufreq-set-all() {
+  	cpus=$(sed -ne 's/^processor.* \([0-9]\+\)$/\1/p' /proc/cpuinfo)
+		for cpu in $cpus
+		do
+			cpufreq-set -c $cpu -g $1
+		done
+}
+
+case "$1" in
+  start)
+	stat_busy "Enabling cpufreq CPU scaling"
+		#cpufreq-set-all conservative	#less dynamic (saving more power, but slooooow)
+		cpufreq-set-all ondemand		#more dynamic (saving power, when speed is not needed)
+		stat_done
+	stat_busy "Entering laptop mode"
+		echo 1 > /proc/sys/vm/laptop_mode
+		stat_done
+	stat_busy "Launching pm-powersave true"
+		pm-powersave true
+		stat_done
+    ;;
+  stop)
+	stat_busy "Disabling cpufreq CPU scaling"
+		cpufreq-set-all performance
+		stat_done
+	stat_busy "Leaving laptop mode"
+		echo 0 > /proc/sys/vm/laptop_mode
+		stat_done
+	stat_busy "Launching pm-powersave false"
+		pm-powersave false
+		stat_done
+    ;;
+  restart)
+	$0 stop
+	sleep 1
+	$0 start
+    ;;
+  *)
+    echo "usage: $0 {start|stop|restart}"
+esac
+
