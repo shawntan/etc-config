@@ -5,3 +5,4 @@ cups/subscriptions.conf.*
 gdb/gdbinit
 ld.so.cache
 resolv.conf
+NetworkManager/system-connections
