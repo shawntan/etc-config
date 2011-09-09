@@ -2,3 +2,6 @@
 *~
 cups/subscriptions.conf
 cups/subscriptions.conf.*
+gdb/gdbinit
+ld.so.cache
+resolv.conf
