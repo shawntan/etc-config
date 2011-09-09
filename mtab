@@ -2,7 +2,7 @@ proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0
 sys /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0
 udev /dev devtmpfs rw,nosuid,relatime,size=10240k,nr_inodes=493769,mode=755 0 0
 run /run tmpfs rw,nosuid,nodev,noexec,relatime,size=10240k,mode=755 0 0
-/dev/sda2 / ext3 rw,commit=0 0 0
+/dev/sda2 / ext3 rw,relatime,commit=0 0 0
 devpts /dev/pts devpts rw,relatime,mode=600,ptmxmode=000 0 0
 shm /dev/shm tmpfs rw,nosuid,nodev,relatime 0 0
 fusectl /sys/fs/fuse/connections fusectl rw,relatime 0 0
