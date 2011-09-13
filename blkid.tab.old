@@ -1,0 +1,2 @@
+<device DEVNO="0x0811" TIME="1315900063.368184" LABEL="shawn" UUID="5E008E7B25557EA5" TYPE="ntfs">/dev/sdb1</device>
+<device DEVNO="0x0b01" TIME="1315900055.694935" LABEL="U3 System" TYPE="iso9660">/dev/sr1</device>
